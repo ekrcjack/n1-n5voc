@@ -221,8 +221,8 @@ function render(ch){
       const short = c.title.replace(/（[^）]*）/,'');
       chips += `<a href="#${id}">${esc(short)}</a>`;
     }
-    const playBtns = `<button class="play-all play-kana50"><span class="ico"></span> 全部播放單字（中→日）</button>
-        <button class="play-all play-ex-zhja"><span class="ico"></span> 全部播放例句（中→日）</button>`;
+    const playBtns = `<button class="play-all play-kana50"><span class="ico"></span> 全部播放單字（日→中）</button>
+        <button class="play-all play-ex-zhja"><span class="ico"></span> 全部播放例句（日→中）</button>`;
     html += `<section class="cat" id="${id}">
       <div class="cat-h">
         <h2 class="jp">${esc(c.title)}</h2>
@@ -235,7 +235,7 @@ function render(ch){
       const gridId = gid+'-grid';
       if(g.sub){
         const groupBtns = `
-          <button class="play-all play-kana50-g" data-target="${gridId}"><span class="ico"></span> 播放單字（中→日）</button>
+          <button class="play-all play-kana50-g" data-target="${gridId}"><span class="ico"></span> 播放單字（日→中）</button>
           <button class="play-all play-ex-zhja-g" data-target="${gridId}"><span class="ico"></span> 播放例句</button>`;
         html += `<div class="subhead" id="${gid}">${esc(g.sub)}${groupBtns}</div>`;
         if(!multiCat) chips += `<a href="#${gid}">${esc(g.sub.replace(/（[^）]*）/,''))}</a>`;
@@ -346,8 +346,8 @@ function collectMeanWordZhJa(container){
   container.querySelectorAll('.card:not(.hidden)').forEach(card=>{
     const mean = card.dataset.mean;
     const word = card.querySelector('.word')?.dataset.text;
-    if(mean) items.push({text:mean, lang:'zh-TW'});
     if(word) items.push({text:word, lang:'ja-JP'});
+    if(mean) items.push({text:mean, lang:'zh-TW'});
   });
   return items;
 }
@@ -356,8 +356,8 @@ function collectExamplesZhJa(container){
   container.querySelectorAll('.card:not(.hidden)').forEach(card=>{
     const zh = card.querySelector('.ex-zh')?.textContent;
     const ja = card.querySelector('.say.ex')?.dataset.text;
-    if(zh) items.push({text:zh, lang:'zh-TW'});
     if(ja) items.push({text:ja, lang:'ja-JP'});
+    if(zh) items.push({text:zh, lang:'zh-TW'});
   });
   return items;
 }
